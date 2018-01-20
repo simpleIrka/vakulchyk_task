@@ -91,12 +91,11 @@
       <a class="navbar-brand name" href="#" style="color: black">Metropol</a>
     </div>
     <ul class="nav navbar-nav">
-        <li class="active"><a href="main.jsp">Главная</a></li>
-        <li ><a href="firstPage.jsp">Фотогалерея</a></li>
-        <li><a href="secondPage.jsp">Номера</a></li>
-        <li><a href="thirdPage.html">Бронирование</a></li>
-        <li><a href="fouthPage.html">Инфо</a></li>
-        <li><a href="index.jsp">Авторизация</a></li>
+        <li><a href="${pageContext.request.contextPath}/main">Главная</a></li>
+        <li ><a href="${pageContext.request.contextPath}/foto">Фотогалерея</a></li>
+        <li><a href="${pageContext.request.contextPath}/room">Номера</a></li>
+        <li><a href="${pageContext.request.contextPath}/info">Инфо</a></li>
+        <li><a href="${pageContext.request.contextPath}/authorization">Авторизация</a></li>
     </ul>
   </div>
 </nav>
