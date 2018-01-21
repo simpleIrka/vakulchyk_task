@@ -59,7 +59,7 @@
     <p>
         <b>Пароль</b><span class="reqiured">*</span>
         <br>
-        <input type="text" class="form-control" name="pass" size="30">
+        <input type="text" class="form-control" name="password" size="30">
     </p>
     </div>
     <br>
