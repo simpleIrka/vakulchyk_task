@@ -1,4 +1,4 @@
 package epam.vakulchyk.bookinghotel.utilitarian;
 
-public class AccountCommand {
+public class DeleteOrderCommand {
 }
