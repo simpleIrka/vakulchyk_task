@@ -16,6 +16,7 @@
 </head>
 <body>
 <div class="main">
+
     <table class="table">
         <thead>
         <tr>
@@ -32,9 +33,11 @@
                 <td><c:out value="${room.numberSeats}" /></td>
                 <td><c:out value="${ room.typeApartment}" /></td>
                 <td><c:out value="${room.cost}" /></td>
+                <td><a href="${pageContext.request.contextPath}/controller?command=list&roomNum=${room.number}&id=${idOrder}">Заселить</a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+</div>
 </body>
 </html>

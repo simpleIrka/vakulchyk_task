@@ -21,10 +21,9 @@
             <a class="navbar-brand name" href="#" style="color: black">Metropol</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="${pageContext.request.contextPath}/views/main.jsp">Главная</a></li>
-            <li><a href="${pageContext.request.contextPath}/views/fotoPage.jsp">Фотогалерея</a></li>
-            <li><a href="${pageContext.request.contextPath}/views/roomPage.jsp">Номера</a></li>
-            <li><a href="${pageContext.request.contextPath}/views/infoPage.jsp">Инфо</a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/jsp/main.jsp">Главная</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/fotoPage.jsp">Фотогалерея</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/infoPage.jsp">Инфо</a></li>
             <li><a href="${pageContext.request.contextPath}/controller?command=authorization">Авторизация</a></li>
         </ul>
     </div>

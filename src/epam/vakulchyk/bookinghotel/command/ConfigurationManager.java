@@ -1,4 +1,4 @@
-package epam.vakulchyk.bookinghotel.utilitarian;
+package epam.vakulchyk.bookinghotel.command;
 
 import java.util.ResourceBundle;
 

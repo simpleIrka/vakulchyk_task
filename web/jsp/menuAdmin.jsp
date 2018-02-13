@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="text"/>
 <html>
 <head>
     <title>Бронь</title>
@@ -15,7 +17,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a>Бронь</a></li>
-            <li><a href>Заселенные номера</a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=resident">Заселенные номера</a></li>
             <li><a href="${pageContext.request.contextPath}/controller?command=logout">Выход</a></li>
         </ul>
     </div>
@@ -33,7 +35,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="order" items="${orderList}" varStatus="status">
+        <c:forEach var="order" items="${orderLogic}" varStatus="status">
             <tr>
                 <td><c:out value="${order.idOrder}" /></td>
                 <td><c:out value="${order.numberSeats}" /></td>
@@ -41,7 +43,7 @@
                 <td><c:out value="${ order.typeApartment}" /></td>
                 <td><c:out value="${order.timeStay}" /></td>
                 <td><c:out value="${ order.dataArrival }" /></td>
-                <td><a href="${pageContext.request.contextPath}/controller?command=list">Заселить</a></td>
+                <td><a href="${pageContext.request.contextPath}/controller?command=takefreeroom&id=${order.idOrder}">Заселить</a></td>
             </tr>
         </c:forEach>
         </tbody>

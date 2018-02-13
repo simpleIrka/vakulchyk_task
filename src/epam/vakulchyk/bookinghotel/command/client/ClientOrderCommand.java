@@ -1,7 +1,9 @@
-package epam.vakulchyk.bookinghotel.command;
+package epam.vakulchyk.bookinghotel.command.client;
 
+import epam.vakulchyk.bookinghotel.command.ActionCommand;
+import epam.vakulchyk.bookinghotel.command.ConfigurationManager;
 import epam.vakulchyk.bookinghotel.entity.Order;
-import epam.vakulchyk.bookinghotel.list.OrderList;
+import epam.vakulchyk.bookinghotel.logic.OrderLogic;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -12,11 +14,11 @@ public class ClientOrderCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page = null;
         int id = Integer.parseInt(request.getParameter(PARAM_NAME_ID));
-        OrderList orderList = new OrderList();
+        OrderLogic orderLogic = new OrderLogic();
         ArrayList<Order> list = new ArrayList<>();
-        list = orderList.personOreder(id);
+        list = orderLogic.personOreder(id);
         request.setAttribute("personOrderList",list);
-        page =ConfigurationManager.getProperty("path.page.applicationPage") ;
+        page = ConfigurationManager.getProperty("path.page.applicationPage") ;
         return page;
     }
 }

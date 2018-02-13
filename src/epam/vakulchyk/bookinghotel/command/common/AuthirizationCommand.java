@@ -1,4 +1,7 @@
-package epam.vakulchyk.bookinghotel.command;
+package epam.vakulchyk.bookinghotel.command.common;
+
+import epam.vakulchyk.bookinghotel.command.ActionCommand;
+import epam.vakulchyk.bookinghotel.command.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 

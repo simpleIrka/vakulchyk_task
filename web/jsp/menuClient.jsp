@@ -1,12 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: igorg
-  Date: 07.02.2018
-  Time: 11:33
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="text"/>
 <html>
 <head>
     <title>Аккаунт</title>
@@ -22,7 +18,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href>Аккаунт</a></li>
-            <li><a href>Забронировать номер</a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=openpage&page=addOrder">Забронировать номер</a></li>
             <li><a href="${pageContext.request.contextPath}/controller?command=personorder&id=${id}">Просмотр брони</a></li>
             <li><a href="${pageContext.request.contextPath}/controller?command=logout">Выход</a></li>
         </ul>
@@ -30,13 +26,45 @@
 </nav>
 <div class="main">
     <c:forEach var="client" items="${dataAboutClient}" varStatus="status">
-
+        <p>
+        <b>
+            <fmt:message key="client.surname"/>
+        </b>
         <c:out value="${ client.surname}" />
-        <c:out value="${ client.name }" />
-        <c:out value="${ client.login}" />
-        <c:out value="${ client.phone}" />
-        <c:out value="${client.discount}" />
-        <c:out value="${ client.passportNumber }" />
+        </p>
+        <p>
+            <b>
+                <fmt:message key="client.name"/>
+            </b>
+            <c:out value="${ client.name }" />
+        </p>
+        <p>
+            <b>
+                <fmt:message key="client.login"/>
+
+            </b>
+            <c:out value="${ client.login}" />
+        </p>
+        <p>
+            <b>
+                <fmt:message key="client.phone"/>
+            </b>
+            <c:out value="${ client.phone}" />
+        </p>
+        <p>
+            <b>
+                <fmt:message key="client.discount"/>
+            </b>
+            <c:out value="${client.discount}" />
+        </p>
+        <p>
+            <b>
+                <fmt:message key="client.passportNumber"/>
+
+            </b>
+            <c:out value="${ client.passportNumber }" />
+        </p>
+
 
     </c:forEach>
 </div>

@@ -1,4 +1,4 @@
-package epam.vakulchyk.bookinghotel.utilitarian;
+package epam.vakulchyk.bookinghotel;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;

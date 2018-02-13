@@ -1,6 +1,11 @@
-package epam.vakulchyk.bookinghotel.utilitarian;
+package epam.vakulchyk.bookinghotel.command;
 
-import javax.servlet.Registration;
+import epam.vakulchyk.bookinghotel.command.admin.*;
+import epam.vakulchyk.bookinghotel.command.client.AddOrederCommand;
+import epam.vakulchyk.bookinghotel.command.client.ClientOrderCommand;
+import epam.vakulchyk.bookinghotel.command.client.OpenRegistrationCommand;
+import epam.vakulchyk.bookinghotel.command.client.RegistrationCommand;
+import epam.vakulchyk.bookinghotel.command.common.*;
 
 public enum CommandEnum {
     LOGIN {
@@ -18,7 +23,11 @@ public enum CommandEnum {
             this.command = new ClientOrderCommand();
         }
     },
-
+    OPENPAGE {
+        {
+            this.command = new OpenCommand();
+        }
+    },
     INFOCLIENT {
         {
             this.command = new InfoClientCommand();
@@ -29,17 +38,27 @@ public enum CommandEnum {
             this.command = new LanguageCommand();
         }
     },
+    ADDORDER {
+        {
+            this.command = new AddOrederCommand();
+        }
+    },
     LOGOUT {
         {
             this.command = new LogoutCommand();
         }
     },
-    DELETEORDER {
+    DELETERESIDENT {
         {
-            this.command = new LoginCommand();
+            this.command = new DeleteResidentCommand();
         }
     },
     LIST {
+        {
+            this.command = new RegistrationOrderCommand();
+        }
+    },
+    TAKEFREEROOM {
         {
             this.command = new FreeRoomCommand();
         }
@@ -52,6 +71,16 @@ public enum CommandEnum {
     GETIN {
         {
             this.command = new AddOrederCommand();
+        }
+    },
+    RESIDENT {
+        {
+            this.command = new ResidentCommand();
+        }
+    },
+    OPEN {
+        {
+            this.command = new OpenRegistrationCommand();
         }
     },
     REGISTRATION {

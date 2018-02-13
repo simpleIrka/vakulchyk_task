@@ -1,7 +1,6 @@
-package epam.vakulchyk.bookinghotel.utilitarian;
+package epam.vakulchyk.bookinghotel.command;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class EmptyCommand implements ActionCommand {
     @Override

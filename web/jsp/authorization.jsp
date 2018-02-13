@@ -16,11 +16,10 @@
             <a class="navbar-brand name" href="#" style="color: black">Metropol</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="${pageContext.request.contextPath}/views/main.jsp">Главная</a></li>
-            <li ><a href="${pageContext.request.contextPath}/views/fotoPage.jsp">Фотогалерея</a></li>
-            <li><a href="${pageContext.request.contextPath}/views/roomPage.jsp">Номера</a></li>
-            <li><a href="${pageContext.request.contextPath}/views/infoPage.jsp">Инфо</a></li>
-            <li class="active"><a href="${pageContext.request.contextPath}/views/authorization.jsp">Авторизация</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/main.jsp">Главная</a></li>
+            <li ><a href="${pageContext.request.contextPath}/jsp/fotoPage.jsp">Фотогалерея</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/infoPage.jsp">Инфо</a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/controller?command=authorization">Авторизация</a></li>
         </ul>
     </div>
 </nav>
@@ -55,8 +54,9 @@
                         <span class="reqiured">*</span> - <fmt:message key="info" />
                     </p>
                     <br>
+                    <a href="${pageContext.request.contextPath}/controller?command=open"><fmt:message key="registration"/></a>
+                    <br>
                     <input type="submit" value=<fmt:message key="entry"/>>
-                    <button type="submit" name ="registrationpage" value=<fmt:message key="registration"/>
                     <br/>
                     ${errorLoginPassMessage}
                     <br/>

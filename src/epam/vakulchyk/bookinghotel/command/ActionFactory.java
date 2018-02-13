@@ -1,4 +1,4 @@
-package epam.vakulchyk.bookinghotel.utilitarian;
+package epam.vakulchyk.bookinghotel.command;
 import javax.servlet.http.HttpServletRequest;
 public class ActionFactory {
     public ActionCommand defineCommand(HttpServletRequest request) {

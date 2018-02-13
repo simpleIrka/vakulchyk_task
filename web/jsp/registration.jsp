@@ -1,11 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: igorg
-  Date: 06.02.2018
-  Time: 13:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="text"/>
+
 <html>
 <head>
     <title>Регистрация</title>
@@ -16,8 +13,8 @@
 <body>
 <div class="header"></div>
 <div class="main">
-    <form name="LoginForm" method="POST" action="controller">
-        <input type="hidden" name="command" value="Registration"/>
+    <form name="registration" method="POST" action="controller">
+        <input type="hidden" name="command" value="registration"/>
         <p>
             <b>Ваша фамилия:</b><span class="reqiured">*</span>
             <br>
@@ -59,15 +56,15 @@
             <span class="reqiured">*</span> - поля обязательные для заполнения
         </p>
         <br>
-        <input class="for" type="submit" name="sendData" value="Отправить анкету">
-
-        <input class="for" type="reset" name="reset" value="Очистить форму">
-
+        <input type="submit" value=<fmt:message key="registration"/>>
     </form>
 
 </div>
-<div class="footer"></div>
-
-
+<div class="footer centerText">
+    <fmt:message key="change.language"/>
+    <a href="${pageContext.request.contextPath}/controller?command=language&lang=ru_RU&page=registration">Ru</a>
+    <a href="${pageContext.request.contextPath}/controller?command=language&lang=by_BY&page=registration">By</a>
+    <a href="${pageContext.request.contextPath}/controller?command=language&lang=en_EN&page=registration">Eng</a>
+</div>
 </body>
 </html>

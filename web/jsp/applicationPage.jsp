@@ -17,9 +17,9 @@
             <a class="navbar-brand name" href="#" style="color: black">Metropol</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href>Аккаунт</a></li>
-            <li><a href>Забронировать номер</a></li>
-            <li class="active"><a href>Просмотр брони</a></li>
+            <li ><a href>Аккаунт</a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=openpage&page=addOrder">Забронировать номер</a></li>
+            <li  class="active"><a href="${pageContext.request.contextPath}/controller?command=personorder&id=${id}">Просмотр брони</a></li>
             <li><a href="${pageContext.request.contextPath}/controller?command=logout">Выход</a></li>
         </ul>
     </div>

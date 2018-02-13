@@ -1,13 +1,17 @@
-package epam.vakulchyk.bookinghotel.command;
+package epam.vakulchyk.bookinghotel.command.common;
 
+import epam.vakulchyk.bookinghotel.command.ActionCommand;
+import epam.vakulchyk.bookinghotel.command.ConfigurationManager;
+import epam.vakulchyk.bookinghotel.command.MessageManager;
 import epam.vakulchyk.bookinghotel.connection.Vsconnection;
 import epam.vakulchyk.bookinghotel.database.DAOClient;
 import epam.vakulchyk.bookinghotel.database.DAOUser;
 import epam.vakulchyk.bookinghotel.entity.Client;
 import epam.vakulchyk.bookinghotel.entity.Order;
-import epam.vakulchyk.bookinghotel.list.OrderList;
+import epam.vakulchyk.bookinghotel.logic.OrderLogic;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -29,9 +33,9 @@ public class LoginCommand implements ActionCommand {
             switch (result) {
                 case "admin": {
                     page = ConfigurationManager.getProperty("path.page.menuAdmin");
-                    OrderList orderList = new OrderList();
-                    ArrayList<Order> list = orderList.makeOrderList();
-                    request.setAttribute("orderList",list);
+                    OrderLogic orderLogic = new OrderLogic();
+                    ArrayList<Order> list = orderLogic.makeOrderList();
+                    request.setAttribute("orderLogic",list);
 
                     break;
                 }
@@ -64,7 +68,9 @@ public class LoginCommand implements ActionCommand {
             daoClient = new DAOClient(connection.takeConnection());
             list = daoClient.dataClient(login);
             request.setAttribute("dataAboutClient", list);
-            request.setAttribute("id",list.get(0).getIdClient());
+            request.setAttribute("idPerson",list.get(0).getIdClient());
+            HttpSession session= request.getSession();
+            session.setAttribute("idPerson",list.get(0).getIdClient());
 
         } catch (SQLException e) {
             e.printStackTrace();

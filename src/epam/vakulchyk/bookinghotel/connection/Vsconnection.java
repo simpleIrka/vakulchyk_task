@@ -3,17 +3,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 public class Vsconnection {
-    public static Connection getConnection()
+    public  Connection takeConnection()
             throws ClassNotFoundException, SQLException {
-        // Примечание: Изменить параметры соединения соответствующе.
+
         String hostName = "localhost";
-        String dbName = "hotelbooking";
+        String dbName = "bookinghotel";
         String userName = "root";
         String password = "pass";
-        return getConnection(hostName, dbName, userName, password);
+        return makeConnection(hostName, dbName, userName, password);
     }
 
-    public static Connection getConnection(String hostName, String dbName,String userName,
+    public  Connection makeConnection(String hostName, String dbName,String userName,
                                            String password) throws SQLException, ClassNotFoundException {
 
         Class.forName("com.mysql.jdbc.Driver");
@@ -22,5 +22,12 @@ public class Vsconnection {
         Connection conn = DriverManager.getConnection(connectionURL, userName,
                 password);
         return conn;
+    }
+    public  void closeConnection(Connection connection){
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
