@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ResidentLogic {
-    private static final Logger LOGGER = LogManager.getLogger(ResidentLogic.class);
+    //private static final Logger LOGGER = LogManager.getLogger(ResidentLogic.class);
 
     public ArrayList<Resident> makeResidentList() {
         Vsconnection vsconnection = new Vsconnection();
@@ -21,11 +21,11 @@ public class ResidentLogic {
             connection = vsconnection.takeConnection();
             DAOResident daoResident = new DAOResident(connection);
             list = daoResident.takeAllResident();
-            LOGGER.info("Make all residents in list");
+      //      LOGGER.info("Make all residents in list");
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Cann't take connection with DB ");
+       //     LOGGER.error("Cann't take connection with DB ");
         } catch (SQLException e) {
-            LOGGER.error("Something wrong with sql query");
+       //     LOGGER.error("Something wrong with sql query");
         } finally {
             vsconnection.closeConnection(connection);
         }
@@ -40,11 +40,11 @@ public class ResidentLogic {
             connection = vsconnection.takeConnection();
             DAOResident daoResident = new DAOResident(connection);
             result = daoResident.deleteResident(id);
-            LOGGER.info("Delete resident by id");
+       //     LOGGER.info("Delete resident by id");
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Cann't take connection with DB ");
+       //     LOGGER.error("Cann't take connection with DB ");
         } catch (SQLException e) {
-            LOGGER.error("Something wrong with sql query");
+       //     LOGGER.error("Something wrong with sql query");
         } finally {
             vsconnection.closeConnection(connection);
         }

@@ -1,0 +1,10 @@
+<tag>
+    <name>greetings</name>
+    <tag-class>epam.vakulchyk.bookinghotel.tag.GreetingsTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+        <name>login</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+</tag>

@@ -18,6 +18,11 @@ import java.util.ArrayList;
 public class LoginCommand implements ActionCommand {
     private static final String PARAM_NAME_LOGIN = "login";
     private static final String PARAM_NAME_PASSWORD = "password";
+    private static final String PARAM_NAME_ADMIN = "admin";
+    private static final String PARAM_NAME_CLIENT = "client";
+    private static final String PARAM_NAME_ERROR = "error";
+    private static final String PARAM_DATA_ABOUT_CLIENT = "dataAboutClient";
+    private static final String PARAM_ID_PERSON= "idPerson";
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -31,7 +36,7 @@ public class LoginCommand implements ActionCommand {
 
             String result = daoUser.authorization(login, pass);
             switch (result) {
-                case "admin": {
+                case PARAM_NAME_ADMIN: {
                     page = ConfigurationManager.getProperty("path.page.menuAdmin");
                     OrderLogic orderLogic = new OrderLogic();
                     ArrayList<Order> list = orderLogic.makeOrderList();
@@ -39,12 +44,12 @@ public class LoginCommand implements ActionCommand {
 
                     break;
                 }
-                case "client": {
+                case PARAM_NAME_CLIENT: {
                     takeData(request, login);
                     page = ConfigurationManager.getProperty("path.page.menuClient");
                     break;
                 }
-                case "error": {
+                case PARAM_NAME_ERROR: {
                     request.setAttribute("errorLoginPassMessage", MessageManager.getProperty("message.loginerror"));
                     page = ConfigurationManager.getProperty("path.page.login");
                     break;
@@ -67,10 +72,9 @@ public class LoginCommand implements ActionCommand {
         try {
             daoClient = new DAOClient(connection.takeConnection());
             list = daoClient.dataClient(login);
-            request.setAttribute("dataAboutClient", list);
-            request.setAttribute("idPerson",list.get(0).getIdClient());
+            request.setAttribute(PARAM_DATA_ABOUT_CLIENT, list);
             HttpSession session= request.getSession();
-            session.setAttribute("idPerson",list.get(0).getIdClient());
+            session.setAttribute(PARAM_ID_PERSON,list.get(0).getIdClient());
 
         } catch (SQLException e) {
             e.printStackTrace();

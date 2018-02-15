@@ -14,7 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ClientLogic {
-    private static final Logger LOGGER = LogManager.getLogger(ClientLogic.class);
+   // private static final Logger LOGGER = LogManager.getLogger(ClientLogic.class);
 
 
     public static ArrayList<Client> makeClientList(int id) {
@@ -25,11 +25,11 @@ public class ClientLogic {
             connection = vsconnection.takeConnection();
             DAOClient daoClient = new DAOClient(connection);
             list = daoClient.dataClientByID(id);
-            LOGGER.info("Admin take list of Client");
+       //     LOGGER.info("Admin take list of Client");
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Cann't take connection with DB ");
+       //     LOGGER.error("Cann't take connection with DB ");
         } catch (SQLException e) {
-            LOGGER.error("Something wrong with sql query");
+        //    LOGGER.error("Something wrong with sql query");
         } finally {
             vsconnection.closeConnection(connection);
         }

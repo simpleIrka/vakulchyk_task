@@ -18,7 +18,7 @@
             <a class="navbar-brand name" href="#" style="color: black">Metropol</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="${pageContext.request.contextPath}/jsp/main.jsp">Главная</a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=openpage&page=main">Главная</a></li>
             <li class="active"><a href="${pageContext.request.contextPath}/jsp/fotoPage.jsp">Фотогалерея</a></li>
             <li><a href="${pageContext.request.contextPath}/jsp/infoPage.jsp">Инфо</a></li>
             <li><a href="${pageContext.request.contextPath}/controller?command=authorization">Авторизация</a></li>

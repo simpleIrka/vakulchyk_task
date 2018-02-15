@@ -6,18 +6,22 @@ import epam.vakulchyk.bookinghotel.entity.Order;
 import epam.vakulchyk.bookinghotel.logic.OrderLogic;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 public class ClientOrderCommand implements ActionCommand {
-    final static String PARAM_NAME_ID = "id";
+    private final static String PARAM_NAME_ID = "idPerson";
+    private final static String PARAM_ORDER_PERSON = "personOrderList";
+
     @Override
     public String execute(HttpServletRequest request) {
+        HttpSession session= request.getSession();
         String page = null;
-        int id = Integer.parseInt(request.getParameter(PARAM_NAME_ID));
+        int id =(int)session.getAttribute(PARAM_NAME_ID);
         OrderLogic orderLogic = new OrderLogic();
         ArrayList<Order> list = new ArrayList<>();
         list = orderLogic.personOreder(id);
-        request.setAttribute("personOrderList",list);
+        request.setAttribute(PARAM_ORDER_PERSON,list);
         page = ConfigurationManager.getProperty("path.page.applicationPage") ;
         return page;
     }

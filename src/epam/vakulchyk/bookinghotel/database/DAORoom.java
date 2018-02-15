@@ -6,6 +6,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DAORoom extends DAO<Room> {
+    private final static String UPDATE_EMPLOYMENT = "UPDATE room SET employment=? WHERE number=?";
+    private final static String SELECT_COST_BY_NUMBER = "select room.cost,room.number from room where number =?";
+    private final static String SELECT_FREE_NUMBER = "SELECT number,number_of_seats,type_of_apartment,cost,employment FROM room where employment LIKE ?";
+    private final static String FREE_ROOM = "free";
 
     public DAORoom(Connection connection) {
         super(connection);
@@ -14,13 +18,10 @@ public class DAORoom extends DAO<Room> {
 
     public ArrayList<Room> listfreeRoom() throws SQLException {
         ArrayList<Room> list = new ArrayList<>();
-        String free = "free";
-
-        String sql = "SELECT number,number_of_seats,type_of_apartment,cost,employment FROM room where employment LIKE '" + free + "'";
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery(sql);
-
-
+        PreparedStatement preparedStatement = null;
+        preparedStatement = connection.prepareStatement(SELECT_FREE_NUMBER);
+        preparedStatement.setString(1, FREE_ROOM);
+        ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
             Room room = new Room();
             room.setNumber(rs.getInt("number"));
@@ -31,38 +32,32 @@ public class DAORoom extends DAO<Room> {
             list.add(room);
 
         }
+        rs.close();
+        preparedStatement.close();
         return list;
     }
 
     public int takeCost(int number) throws SQLException {
         int cost = 0;
-        String sql = "select room.cost,room.number from room where number =" + number;
         PreparedStatement preparedStatement = null;
-        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = connection.prepareStatement(SELECT_COST_BY_NUMBER);
+        preparedStatement.setInt(1, number);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             cost = resultSet.getInt("cost");
         }
         preparedStatement.executeUpdate();
+        resultSet.close();
+        preparedStatement.close();
         return cost;
     }
 
-    public void makeFree(int number) throws SQLException {
-        String sql = "UPDATE room SET employment=? WHERE number=?";
+    public void changeEmployment(int number, String employment) throws SQLException {
         PreparedStatement preparedStatement = null;
-        preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1,"free");
-        preparedStatement.setInt(2,number);
+        preparedStatement = connection.prepareStatement(UPDATE_EMPLOYMENT);
+        preparedStatement.setString(1, employment);
+        preparedStatement.setInt(2, number);
         preparedStatement.executeUpdate();
-
-    }
-    public void makeBusy(int number) throws SQLException {
-        String sql = "UPDATE room SET employment=? WHERE number=?";
-        PreparedStatement preparedStatement = null;
-        preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1,"busy");
-        preparedStatement.setInt(2,number);
-        preparedStatement.executeUpdate();
-
+        preparedStatement.close();
     }
 }

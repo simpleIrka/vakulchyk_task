@@ -1,12 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: igorg
-  Date: 10.02.2018
-  Time: 12:24
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="text"/>
+
 <html>
 <head>
     <title>Title</title>
@@ -20,10 +17,11 @@
     <table class="table">
         <thead>
         <tr>
-            <th>№ комнаты</th>
-            <th>Количество мест</th>
-            <th>Тип номера</th>
-            <th>Стоимость</th>
+            <th><fmt:message key="room.number" /></th>
+            <th><fmt:message key="room.numberSeats" /></th>
+            <th><fmt:message key="room.typeApartment" /></th>
+            <th><fmt:message key="room.cost" /></th>admin.settle
+            <th><fmt:message key="admin.settle" /></th>
         </tr>
         </thead>
         <tbody>
@@ -33,7 +31,7 @@
                 <td><c:out value="${room.numberSeats}" /></td>
                 <td><c:out value="${ room.typeApartment}" /></td>
                 <td><c:out value="${room.cost}" /></td>
-                <td><a href="${pageContext.request.contextPath}/controller?command=list&roomNum=${room.number}&id=${idOrder}">Заселить</a></td>
+                <td><a href="${pageContext.request.contextPath}/controller?command=list&roomNum=${room.number}&id=${idOrder}"><fmt:message key="admin.settle" /></a></td>
             </tr>
         </c:forEach>
         </tbody>

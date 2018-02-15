@@ -6,10 +6,12 @@ import epam.vakulchyk.bookinghotel.command.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 
 public class OpenCommand implements ActionCommand{
+    private static final String PARAM_PAGE = "page";
+
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
-        String newPage = request.getParameter("page");
+        String newPage = request.getParameter(PARAM_PAGE);
         String n = "path.page."+newPage;
         page = ConfigurationManager.getProperty(n);
         return page;

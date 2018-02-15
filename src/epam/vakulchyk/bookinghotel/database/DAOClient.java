@@ -17,8 +17,9 @@ public class DAOClient extends DAO<Client> {
     public ArrayList<Client> dataClient(String login) throws SQLException {
         PreparedStatement pstm = connection.prepareStatement(SELECT_CLIENT_DATA_BY_LOGIN);
         ArrayList<Client> list = new ArrayList<>();
-        ResultSet rs = pstm.executeQuery();
         pstm.setString(1, login);
+        ResultSet rs = pstm.executeQuery();
+
         if (rs.next()) {
             int id = rs.getInt("id_client");
             String surname = rs.getString("surname");
@@ -43,8 +44,9 @@ public class DAOClient extends DAO<Client> {
     public ArrayList<Client> dataClientByID(int id) throws SQLException {
         ArrayList<Client> list = new ArrayList<>();
         PreparedStatement pstm = connection.prepareStatement(SELECT_CLIENT_DATA_BY_ID);
-        ResultSet rs = pstm.executeQuery();
         pstm.setInt(1, id);
+        ResultSet rs = pstm.executeQuery();
+
         if (rs.next()) {
             String surname = rs.getString("surname");
             String name = rs.getString("name");

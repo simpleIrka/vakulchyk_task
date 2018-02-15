@@ -33,7 +33,7 @@ public class RegistrationOrderCommand implements ActionCommand {
             time = daoOrder.takeTimeStay(idOrder);
             int costLeaving = cost*time;
             registrationOrder = daoResident.create(costLeaving,idOrder,number);
-           daoRoom.makeBusy(number);
+           daoRoom.changeEmployment(number,"busy");
             page= ConfigurationManager.getProperty("path.page.menuAdmin");
 
         } catch (ClassNotFoundException e) {

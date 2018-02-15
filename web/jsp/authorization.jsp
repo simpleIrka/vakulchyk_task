@@ -73,7 +73,7 @@
 <div class="footer centerText">
     <fmt:message key="change.language"/>
     <a href="${pageContext.request.contextPath}/controller?command=language&lang=ru_RU&page=login">Ru</a>
-    <a href="${pageContext.request.contextPath}/controller?command=language&lang=by_BY&page=login">By</a>
+    <a href="${pageContext.request.contextPath}/controller?command=language&lang=by_BY&page=login">Be</a>
     <a href="${pageContext.request.contextPath}/controller?command=language&lang=en_EN&page=login">Eng</a>
    </div>
 

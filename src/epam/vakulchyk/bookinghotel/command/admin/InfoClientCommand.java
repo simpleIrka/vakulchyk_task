@@ -10,13 +10,15 @@ import java.util.ArrayList;
 
 public class InfoClientCommand implements ActionCommand {
     private static final String ID_PARAMETER = "id";
+    private static final String CLIENT_LIST = "clientList";
+
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
         int id = Integer.parseInt(request.getParameter(ID_PARAMETER));
         ArrayList<Client> list = ClientLogic.makeClientList(id);
-        request.setAttribute("clientList",list);
-        request.setAttribute("id",id);
+        request.setAttribute(CLIENT_LIST,list);
+        request.setAttribute(ID_PARAMETER,id);
 
         page= ConfigurationManager.getProperty("path.page.client");
         return page;

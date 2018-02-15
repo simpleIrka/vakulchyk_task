@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <head>
@@ -5,8 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link href="../css/index.css" rel="stylesheet">
     <link rel="shortcut icon" href="../image/emblem.png">
     <link rel="shortcut icon" src="favicon2.ico"/>
@@ -21,7 +21,7 @@
             <a class="navbar-brand name" href="#" style="color: black">Metropol</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="${pageContext.request.contextPath}/jsp/main.jsp">Главная</a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/controller?command=openpage&page=main">Главная</a></li>
             <li><a href="${pageContext.request.contextPath}/jsp/fotoPage.jsp">Фотогалерея</a></li>
             <li><a href="${pageContext.request.contextPath}/jsp/infoPage.jsp">Инфо</a></li>
             <li><a href="${pageContext.request.contextPath}/controller?command=authorization">Авторизация</a></li>
@@ -84,7 +84,6 @@
     </div>
 
     <div class="container-fluid text-body">
-
         <p>
         <h1>История нашего отеля</h1>
 
@@ -108,55 +107,8 @@
             комплекс с ресторанами, театром, художественными галереями, помещением для проведения спортивных состязаний.
             Театральная сцена предназначалась для спектаклей
             Частной оперы С. И. Мамонтова. Конкурс на лучший проект комплекса, проводившийся в 1899 году, выиграли
-            архитекторы Л. В. Кекушев и Н. Л. Шевяков[6], однако Савва
+            архитекторы Л. В. Кекушев и Н. Л. Шевяков, однако Савва
             Мамонтов отдал предпочтение проекту Вильяма Валькота, занявшему четвёртое место.
         </p>
     </div>
-    <div class="container-fluid ballet-body">
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <b>Оставьте свой отзыв о нашем отеле!</b><br/>
-                </div>
-                <div class="col-md-4"></div>
-            </div>
-            <form class="ballet-form" id="myForm" action="" method="post" data-toggle="validator">
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <input type="text" id="name" class="form-control" placeholder="Ваше имя" required/>
-                    </div>
-                    <div class="col-md-4"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="email" type="text" class="form-control" name="email"
-                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder=" Ваш email">
-                        </div>
-                    </div>
-                    <div class="col-md-4"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <textarea class="form-control" rows="7" id="message" placeholder="Отзыв" required></textarea>
-                    </div>
-                    <div class="col-md-4"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <button type="submit" id="send" class="btn btn-default">Отправить</button>
-                    </div>
-                    <div class="col-md-4"></div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<script src="../js/main.js"></script>
 </body>

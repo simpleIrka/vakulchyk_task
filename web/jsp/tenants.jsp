@@ -1,6 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="text"/>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Жильцы</title>
@@ -25,9 +28,10 @@
 <table class="table">
     <thead>
     <tr>
-        <th>№ комнаты</th>
-        <th>Количество мест</th>
-        <th>Тип номера</th>
+        <th><fmt:message key="room.cost" /></th>
+        <th><fmt:message key="admin.idOrder" /></th>
+        <th><fmt:message key="room.number" /></th>
+        <th><fmt:message key="admin.evict" /></th>
     </tr>
     </thead>
     <tbody>
@@ -36,7 +40,7 @@
             <td><c:out value="${resident.coast}" /></td>
             <td><c:out value="${resident.idOrder}" /></td>
             <td><c:out value="${ resident.numderRoom}" /></td>
-            <td><a href="${pageContext.request.contextPath}/controller?command=deleteresident&id=${resident.idOrder}">Заселить</a></td>
+            <td><a href="${pageContext.request.contextPath}/controller?command=deleteresident&id=${resident.idOrder}&number=${ resident.numderRoom}"><fmt:message key="admin.evict" /></a></td>
 
         </tr>
     </c:forEach>

@@ -43,6 +43,7 @@
                     <td><c:out value="${order.timeStay}" /></td>
                     <td><c:out value="${ order.dataArrival }" /></td>
                 </tr>
+
             </c:forEach>
             </tbody>
         </table>

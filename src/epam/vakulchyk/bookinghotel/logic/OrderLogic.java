@@ -9,13 +9,11 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class OrderLogic {
-    private static final Logger LOGGER = LogManager.getLogger(OrderLogic.class);
+   //private static final Logger LOGGER = LogManager.getLogger(OrderLogic.class);
 
     public ArrayList<Order> makeOrderList() {
         Vsconnection vsconnection = new Vsconnection();
@@ -25,11 +23,11 @@ public class OrderLogic {
             connection = vsconnection.takeConnection();
             DAOOrder daoOrder = new DAOOrder(connection);
             list = daoOrder.takeAllOrder();
-            LOGGER.info("Make all orders in list");
+           // LOGGER.info("Make all orders in list");
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Cann't take connection with DB ");
+            //LOGGER.error("Cann't take connection with DB ");
         } catch (SQLException e) {
-            LOGGER.error("Something wrong with sql query");
+          //  LOGGER.error("Something wrong with sql query");
         } finally {
             vsconnection.closeConnection(connection);
         }
@@ -44,11 +42,11 @@ public class OrderLogic {
             connection = vsconnection.takeConnection();
             DAOOrder daoOrder = new DAOOrder(connection);
             list = daoOrder.orederClient(id);
-            LOGGER.info("Got order of your person");
+            //LOGGER.info("Got order of your person");
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Cann't take connection with DB ");
+            //LOGGER.error("Cann't take connection with DB ");
         } catch (SQLException e) {
-            LOGGER.error("Something wrong with sql query");
+           // LOGGER.error("Something wrong with sql query");
         } finally {
             vsconnection.closeConnection(connection);
         }
@@ -64,11 +62,11 @@ public class OrderLogic {
             connection = vsconnection.takeConnection();
             DAOOrder daoOrder = new DAOOrder(connection);
             result = daoOrder.create(numberSeats, idClient, typeApartment, timeStay, dateArrival);
-            LOGGER.info("Client creat new order");
+          //  LOGGER.info("Client creat new order");
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Cann't take connection with DB ");
+           // LOGGER.error("Cann't take connection with DB ");
         } catch (SQLException e) {
-            LOGGER.error("Something wrong with sql query");
+           // LOGGER.error("Something wrong with sql query");
         } finally {
             vsconnection.closeConnection(connection);
         }

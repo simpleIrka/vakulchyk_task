@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RoomLogic {
-    private static final Logger LOGGER = LogManager.getLogger(RoomLogic.class);
+  //  private static final Logger LOGGER = LogManager.getLogger(RoomLogic.class);
 
     public ArrayList<Room> makeListFreeRoom() {
         ArrayList<Room> list = new ArrayList<>();
@@ -21,11 +21,11 @@ public class RoomLogic {
             connection = vsconnection.takeConnection();
             DAORoom daoRoom = new DAORoom(connection);
             list = daoRoom.listfreeRoom();
-            LOGGER.info("Admin take list of room that free at this moment");
+      //      LOGGER.info("Admin take list of room that free at this moment");
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Cann't take connection with DB ");
+      //      LOGGER.error("Cann't take connection with DB ");
         } catch (SQLException e) {
-            LOGGER.error("Something wrong with sql query");
+       //     LOGGER.error("Something wrong with sql query");
         } finally {
             vsconnection.closeConnection(connection);
         }

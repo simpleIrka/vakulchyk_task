@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <fmt:setLocale value="${locale}" scope="session" />
 <fmt:setBundle basename="text"/>
 <html>
@@ -26,12 +27,13 @@
     <table class="table">
         <thead>
         <tr>
-            <th>№ Брони</th>
-            <th>Фамилия</th>
-            <th>Количество мест</th>
-            <th>Тип номера</th>
-            <th>Длительность остановки</th>
-            <th>Дата заселения</th>
+            <th><fmt:message key="admin.idOrder" /></th>
+            <th><fmt:message key="admin.numberOfSets" /></th>
+            <th><fmt:message key="admin.idClient" /></th>
+            <th><fmt:message key="admin.typeApartment" /></th>
+            <th><fmt:message key="admin.timeStay" /></th>
+            <th><fmt:message key="admin.dataArrival" /></th>
+            <th><fmt:message key="admin.settle" /></th>
         </tr>
         </thead>
         <tbody>
@@ -39,11 +41,11 @@
             <tr>
                 <td><c:out value="${order.idOrder}" /></td>
                 <td><c:out value="${order.numberSeats}" /></td>
-                <td><a href="${pageContext.request.contextPath}/controller?command=infoClient&id=${order.idClient}"><c:out value="${ order.idClient}" /></a></td>
+                <td><a href="${pageContext.request.contextPath}/controller?command=infoClient&id=${order.idClient}"><c:out value="${order.idClient}" /></a></td>
                 <td><c:out value="${ order.typeApartment}" /></td>
                 <td><c:out value="${order.timeStay}" /></td>
                 <td><c:out value="${ order.dataArrival }" /></td>
-                <td><a href="${pageContext.request.contextPath}/controller?command=takefreeroom&id=${order.idOrder}">Заселить</a></td>
+                <td><a href="${pageContext.request.contextPath}/controller?command=takefreeroom&id=${order.idOrder}"><fmt:message key="admin.settle" /></a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -16,44 +16,44 @@
     <form name="registration" method="POST" action="controller">
         <input type="hidden" name="command" value="registration"/>
         <p>
-            <b>Ваша фамилия:</b><span class="reqiured">*</span>
+            <b><fmt:message key="registration.surname" /></b><span class="reqiured">*</span>
             <br>
             <input type="text" class="form-control" name="surname" size="15"/>
         </p>
         <p>
-            <b>Ваше имя:</b><span class="reqiured">*</span>
+            <b><fmt:message key="registration.name" /></b><span class="reqiured">*</span>
             <br>
             <input type="text" class="form-control" name="name" size="15"/>
         </p>
         <p>
-            <b>Номер телефона:</b><span class="reqiured">*</span>
+            <b><fmt:message key="registration.phone" /></b><span class="reqiured">*</span>
             <br>
             <input type="text" class="form-control" name="phone" size="15"/>
         </p>
         <p>
-            <b>Паспортные данные:</b><span class="reqiured">*</span>
+            <b><fmt:message key="registration.passport" /></b><span class="reqiured">*</span>
             <br>
             <input type="text" class="form-control" name="passportNumber" size="15"/>
         </p>
         <p>
-            <b>Логин:</b><span class="reqiured">*</span>
+            <b><fmt:message key="registration.login" /></b><span class="reqiured">*</span>
             <br>
             <input type="text" class="form-control" name="login" size="15"/>
         </p>
         <p>
-            <b>Пароль:</b><span class="reqiured">*</span>
+            <b><fmt:message key="registration.password" /></b><span class="reqiured">*</span>
             <br>
             <input type="password" class="form-control" name="password" size="15"/>
         </p>
         <p>
-            <b>Повторите пароль:</b><span class="reqiured">*</span>
+            <b><fmt:message key="registration.secondpassword" /></b><span class="reqiured">*</span>
             <br>
             <input type="password" class="form-control" name="secondPassword" size="15"/>
         </p>
 
         <br>
         <p class="info">
-            <span class="reqiured">*</span> - поля обязательные для заполнения
+            <span class="reqiured">*</span> - <fmt:message key="info" />
         </p>
         <br>
         <input type="submit" value=<fmt:message key="registration"/>>
@@ -63,7 +63,7 @@
 <div class="footer centerText">
     <fmt:message key="change.language"/>
     <a href="${pageContext.request.contextPath}/controller?command=language&lang=ru_RU&page=registration">Ru</a>
-    <a href="${pageContext.request.contextPath}/controller?command=language&lang=by_BY&page=registration">By</a>
+    <a href="${pageContext.request.contextPath}/controller?command=language&lang=by_BY&page=registration">Be</a>
     <a href="${pageContext.request.contextPath}/controller?command=language&lang=en_EN&page=registration">Eng</a>
 </div>
 </body>
