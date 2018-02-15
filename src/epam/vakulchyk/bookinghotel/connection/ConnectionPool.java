@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import java.util.Vector;
+
 public class ConnectionPool {
     private Vector<Connection> availableConns = new Vector<Connection>();
     private Vector<Connection> usedConns = new Vector<Connection>();

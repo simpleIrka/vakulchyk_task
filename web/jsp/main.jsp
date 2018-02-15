@@ -1,16 +1,14 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="text"/>
 <head>
     <title>Metropol</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
     <link href="../css/index.css" rel="stylesheet">
     <link rel="shortcut icon" href="../image/emblem.png">
-    <link rel="shortcut icon" src="favicon2.ico"/>
-
 </head>
 <body style="height:1500px">
 
@@ -21,20 +19,19 @@
             <a class="navbar-brand name" href="#" style="color: black">Metropol</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="${pageContext.request.contextPath}/controller?command=openpage&page=main">Главная</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/fotoPage.jsp">Фотогалерея</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/infoPage.jsp">Инфо</a></li>
-            <li><a href="${pageContext.request.contextPath}/controller?command=authorization">Авторизация</a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/jsp/main.jsp"><fmt:message key="main.main" /></a></li>
+            <li ><a href="${pageContext.request.contextPath}/jsp/fotoPage.jsp"><fmt:message key="main.foto" /></a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/infoPage.jsp"><fmt:message key="main.info" /></a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=authorization"><fmt:message key="main.autorization" /></a></li>
         </ul>
     </div>
 </nav>
 <br/>
 <div class="page-header">
-    <h1>История отеля Metropol</h1>
+    <h1> <fmt:message key="history.title" /></h1>
 </div>
 <div class="container" style="margin-top:50px">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <!-- Указатели кружки-->
         <ol class="carousel-indicators">
             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
             <li data-target="#carousel-example-generic" data-slide-to="1"></li>
@@ -42,7 +39,6 @@
             <li data-target="#carousel-example-generic" data-slide-to="3"></li>
 
         </ol>
-        <!-- Контент слайда (slider wrap)-->
         <div class="carousel-inner">
             <div class="item active">
                 <img src="http://metropol-moscow.ru/upload/iblock/137/137537b53b0068108a16315793c6cc6c.jpg" alt="..."
@@ -85,30 +81,25 @@
 
     <div class="container-fluid text-body">
         <p>
-        <h1>История нашего отеля</h1>
-
-        Гости́ница «Метропо́ль» — гостиница в центре Москвы класса «5 звёзд», расположенная по адресу: Театральный
-        проезд,
-        д. 2. Строилась в 1899—1905 годах; инициатором строительства был Савва Мамонтов; по его заказу Вильям Валькот
-        разработал
-        первоначальный проект. Здание «Метрополя» играет исключительно важную роль в формировании облика Театральной
-        площади и площади
-        Революции. Гостиница является самым крупным общественным зданием эпохи модерна и признаётся одним из самых
-        значительных московских
-        историко-архитектурных памятников этого стиля
+        <h1><fmt:message key="history.main" /></h1>
+        <fmt:message key="history.part1" /><fmt:message key="history.part2" />
+        <fmt:message key="history.part3" /> <fmt:message key="history.part4" />
+        <fmt:message key="history.part5" />
         </p>
         <p>
-            На месте, где сейчас находится «Метрополь», с 1830-х годов располагалась трёхэтажная гостиница с банями
-            купца Челышева (москвичи её называли
-            «Челыши»), построенная по проекту Осипа Бове. В 1890-х годах промышленник и меценат Савва Мамонтов выкупил
-            гостиницу и прилегающие участки земли для
-            реализации своей новаторской идеи: он задумал организовать в Москве грандиозный культурно-досуговый центр,
-            который предусматривал бы современный гостиничный
-            комплекс с ресторанами, театром, художественными галереями, помещением для проведения спортивных состязаний.
-            Театральная сцена предназначалась для спектаклей
-            Частной оперы С. И. Мамонтова. Конкурс на лучший проект комплекса, проводившийся в 1899 году, выиграли
-            архитекторы Л. В. Кекушев и Н. Л. Шевяков, однако Савва
-            Мамонтов отдал предпочтение проекту Вильяма Валькота, занявшему четвёртое место.
+            <fmt:message key="history.part6" /><fmt:message key="history.part7"/>
+            <fmt:message key="history.part8" /><fmt:message key="history.part9"/>
+            <fmt:message key="history.part10" /><fmt:message key="history.part11"/>
+            <fmt:message key="history.part12" /><fmt:message key="history.part13"/>
+            <fmt:message key="history.part14" /><fmt:message key="history.part15"/>
+            <fmt:message key="history.part16" />
         </p>
     </div>
+</div>
+<div class="footer centerText">
+    <fmt:message key="change.language"/>
+    <a href="${pageContext.request.contextPath}/controller?command=language&lang=ru_RU&page=main">Ru</a>
+    <a href="${pageContext.request.contextPath}/controller?command=language&lang=by_BY&page=main">Be</a>
+    <a href="${pageContext.request.contextPath}/controller?command=language&lang=en_EN&page=main">Eng</a>
+</div>
 </body>

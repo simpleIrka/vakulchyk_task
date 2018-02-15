@@ -5,9 +5,10 @@
 
 <html>
 <head>
-    <title>Регистрация</title>
+    <title>Metropol</title>
     <link rel="shortcut icon" href="../image/emblem.png">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 
 </head>
 <body>

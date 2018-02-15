@@ -11,6 +11,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  <jsp:forward page="/jsp/fotoPage.jsp"/>
+  <jsp:forward page="/jsp/authorization.jsp"/>
   </body>
 </html>

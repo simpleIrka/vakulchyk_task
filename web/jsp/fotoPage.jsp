@@ -1,6 +1,7 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="text"/>
 <head>
     <title>Metropol</title>
     <meta charset="utf-8">
@@ -18,10 +19,10 @@
             <a class="navbar-brand name" href="#" style="color: black">Metropol</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="${pageContext.request.contextPath}/controller?command=openpage&page=main">Главная</a></li>
-            <li class="active"><a href="${pageContext.request.contextPath}/jsp/fotoPage.jsp">Фотогалерея</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/infoPage.jsp">Инфо</a></li>
-            <li><a href="${pageContext.request.contextPath}/controller?command=authorization">Авторизация</a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=openpage&page=main"><fmt:message key="main.main" /></a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/controller?command=openpage&page=foto"><fmt:message key="main.foto" /></a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=openpage&page=info"><fmt:message key="main.info" /></a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=openpage&page=login"><fmt:message key="main.autorization" /></a></li>
         </ul>
     </div>
 </nav>
@@ -93,65 +94,17 @@
 </div>
 
 <script>
-    //при нажатии на ссылку, содержащую Thumbnail
+
     $('a.thumbnail').click(function (e) {
-        //отменить стандартное действие браузера
+
         e.preventDefault();
-        //присвоить атрибуту scr элемента img модального окна
-        //значение атрибута scr изображения, которое обёрнуто
-        //вокруг элемента a, на который нажал пользователь
-        $('#image-modal .modal-body img').attr('src', $(this).find('img').attr('src'));
-        //открыть модальное окно
+         $('#image-modal .modal-body img').attr('src', $(this).find('img').attr('src'));
+
         $("#image-modal").modal('show');
     });
-    //при нажатию на изображение внутри модального окна
-    //закрыть его (модальное окно)
+
     $('#image-modal .modal-body img').on('click', function () {
         $("#image-modal").modal('hide')
-    });
-
-
-    $("#adagio").click(function () {
-        document.getElementById("adagioText").innerHTML = "Количество мест в номере: 2" + "<br/>"
-            + "Вид: исторический" + "<br/>" +
-            "В спальне: кровать «king size» 2х2 метра" + "</br>" +
-            "Просторная ванная комната оснащена тропическим душем, встроенным в зеркалом" + "</br>";
-        ;
-    });
-
-    $("#arabesk").click(function () {
-        document.getElementById("arabeskText").innerHTML = "Количество мест в номере: 2" + "<br/>"
-            + "Возрастное ограничение: Детям до 14 лет с сопровождающим лицом" + "<br/>" +
-            "Вид: новый" + "</br>" +
-            "Площадь номера – 48 кв. метров (157 кв. футов)." + "</br>" +
-            "Номера оборудованы ЖК телевизором (с диагональю экрана в 49 дюймов), IPad Air 2, системой «Умный дом»." + "</br>" +
-            "К услугам гостей: косметические средства Asprey London в ванных комнатах, мини-бар, кофе-машина Nespresso с набором капсул, элитные сорта чая и чайник KitchenAid." + "</br>"
-    });
-
-    $("#asamble").click(function () {
-        $("#asambleText").html("Наши номера класса «Стандарт» аналогичны по благородному декору, комбинированному освещению и удобному зонированию, но в то же время отличаются друг от друга планировкой, дизайном и цветовым решением. Для удобства гостей с детьми отель располагает номерами, сообщающимися между собой.\n" +
-            "\n" +
-            "Площадь номера «Стандартный» – от 25 м2. \n" +
-            "Каждый номер оснащен телевизором с жидкокристаллическим экраном со светодиодной подсветкой, мини-баром и рабочим столом.");
-        ;
-    });
-
-
-    $("#showDanceDirection").bind('click', function () {
-        $.getJSON("room.json", function (data) {
-            html = '<div class="panel panel-default">' + '<table class="table table-striped table-hover">' + '<tr>' + '<th>' + 'Фильм' + '</th>' + '<th>' + 'Доступные сеансы сегодня' + '</th>' + '</tr>';
-            $.each(data, function (key, val) {
-                html += "<tr>" + '<td>' + key + '</td>' + "<td>";
-                $.each(val, function (key1, val1) {
-                    html += key1 + " ";
-                });
-                html += "</td>" + "</tr>";
-            });
-            html += '</table>' + '</div>';
-
-            $("#aboutSchool").append(html);
-        });
-
     });
     $(".adagio").bind('mouseover', function () {
         $(this).tooltip("show");

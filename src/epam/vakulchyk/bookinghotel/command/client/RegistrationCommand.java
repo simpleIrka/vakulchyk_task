@@ -20,6 +20,7 @@ public class RegistrationCommand implements ActionCommand {
     private static final String PARAM_NAME_PASSPORT = "passportNumber";
     private static final String PARAM_NAME_LOGIN = "login";
     private static final String PARAM_NAME_PASSWORD = "password";
+    private static final String PARAM_NAME_SECOND_PASSWORD = "secondPassword";
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -41,10 +42,10 @@ public class RegistrationCommand implements ActionCommand {
             String passport = request.getParameter(PARAM_NAME_PASSPORT);
             String login = request.getParameter(PARAM_NAME_LOGIN);
             String password = request.getParameter(PARAM_NAME_PASSWORD);
+            String secondPassword = request.getParameter(PARAM_NAME_SECOND_PASSWORD);
 
             resultUser = daoUser.create(login, password);
             resultClient = daoClient.create(surname, name, passport, phone, login);
-            //takeData(request,login,connection);
             if (resultClient || resultUser) {
                 page = ConfigurationManager.getProperty("path.page.login");
             } else {

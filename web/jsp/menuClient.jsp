@@ -5,7 +5,7 @@
 <fmt:setBundle basename="text"/>
 <html>
 <head>
-    <title>Аккаунт</title>
+    <title>Metropol</title>
     <link rel="shortcut icon" href="../image/emblem.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link href="../css/index.css" rel="stylesheet">
@@ -17,10 +17,10 @@
             <a class="navbar-brand name" href="#" style="color: black">Metropol</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href>Аккаунт</a></li>
-            <li><a href="${pageContext.request.contextPath}/controller?command=openpage&page=addOrder">Забронировать номер</a></li>
-            <li><a href="${pageContext.request.contextPath}/controller?command=personorder&id=${id}">Просмотр брони</a></li>
-            <li><a href="${pageContext.request.contextPath}/controller?command=logout">Выход</a></li>
+            <li class="active"><a href><fmt:message key="main.client.account" /></a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=openpage&page=addOrder"><fmt:message key="main.client.bookingRoom" /></a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=personorder&id=${id}"><fmt:message key="main.client.reservation" /></a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="main.client.exit" /></a></li>
         </ul>
     </div>
 </nav>

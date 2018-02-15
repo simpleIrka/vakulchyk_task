@@ -6,7 +6,7 @@
 <fmt:setBundle basename="text"/>
 <html>
 <head>
-    <title>Бронь</title>
+    <title>Metropol</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="shortcut icon" href="../image/emblem.png">
     <link href="../css/index.css" rel="stylesheet">

@@ -4,7 +4,7 @@
 <fmt:setBundle basename="text"/>
 <head>
     <meta charset="UTF-8">
-    <title>Авторизация</title>
+    <title>Metropol</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="shortcut icon" href="../image/emblem.png">
     <link href="../css/index.css" rel="stylesheet">
@@ -16,10 +16,10 @@
             <a class="navbar-brand name" href="#" style="color: black">Metropol</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="${pageContext.request.contextPath}/jsp/main.jsp">Главная</a></li>
-            <li ><a href="${pageContext.request.contextPath}/jsp/fotoPage.jsp">Фотогалерея</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/infoPage.jsp">Инфо</a></li>
-            <li class="active"><a href="${pageContext.request.contextPath}/controller?command=authorization">Авторизация</a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/main.jsp"><fmt:message key="main.main" /></a></li>
+            <li ><a href="${pageContext.request.contextPath}/jsp/fotoPage.jsp"><fmt:message key="main.foto" /></a></li>
+            <li><a href="${pageContext.request.contextPath}/jsp/infoPage.jsp"><fmt:message key="main.info" /></a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/controller?command=authorization"><fmt:message key="main.autorization" /></a></li>
         </ul>
     </div>
 </nav>
@@ -54,7 +54,7 @@
                         <span class="reqiured">*</span> - <fmt:message key="info" />
                     </p>
                     <br>
-                    <a href="${pageContext.request.contextPath}/controller?command=open"><fmt:message key="registration"/></a>
+                    <a href="${pageContext.request.contextPath}/controller?command=openpage&page=registration"><fmt:message key="registration"/></a>
                     <br>
                     <input type="submit" value=<fmt:message key="entry"/>>
                     <br/>
