@@ -16,7 +16,8 @@ public class OrderLogic {
    //private static final Logger LOGGER = LogManager.getLogger(OrderLogic.class);
 
     public ArrayList<Order> makeOrderList() {
-        Vsconnection vsconnection = new Vsconnection();
+        Vsconnection vsconnection = new Vsconnection(1);
+      //  Vsconnection vsconnection = new Vsconnection(1);
         ArrayList<Order> list = new ArrayList<>();
         Connection connection = null;
         try {

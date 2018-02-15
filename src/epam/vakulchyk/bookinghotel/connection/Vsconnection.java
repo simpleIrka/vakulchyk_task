@@ -1,33 +1,66 @@
 package epam.vakulchyk.bookinghotel.connection;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import java.util.Vector;
+
 public class Vsconnection {
-    public  Connection takeConnection()
-            throws ClassNotFoundException, SQLException {
+    private Vector<Connection> availableConns = new Vector<Connection>();
+    private Vector<Connection> usedConns = new Vector<Connection>();
+    private static final String HOST_NAME = "localhost";
+    private static final String DB_NAME = "bookinghotel";
+    private static final String USER_NAME = "root";
+    private static final String PASSWORD = "pass";
+    private static final String URL = "jdbc:mysql://" + HOST_NAME + ":3306/" + DB_NAME;
 
-        String hostName = "localhost";
-        String dbName = "bookinghotel";
-        String userName = "root";
-        String password = "pass";
-        return makeConnection(hostName, dbName, userName, password);
-    }
-
-    public  Connection makeConnection(String hostName, String dbName,String userName,
-                                           String password) throws SQLException, ClassNotFoundException {
-
-        Class.forName("com.mysql.jdbc.Driver");
-        String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
-
-        Connection conn = DriverManager.getConnection(connectionURL, userName,
-                password);
-        return conn;
-    }
-    public  void closeConnection(Connection connection){
+    public Vsconnection(int initConnCnt) {
         try {
-            connection.close();
-        } catch (SQLException e) {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        for (int i = 0; i < initConnCnt; i++) {
+            availableConns.addElement(getConnection());
+        }
+    }
+
+    private Connection getConnection() {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(URL,USER_NAME,PASSWORD);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+
+    public synchronized Connection retrieve() throws SQLException {
+        Connection newConn = null;
+        if (availableConns.size() == 0) {
+            newConn = getConnection();
+        } else {
+            newConn = (Connection) availableConns.lastElement();
+            availableConns.removeElement(newConn);
+        }
+        usedConns.addElement(newConn);
+        return newConn;
+    }
+
+    public synchronized void putback(Connection c) throws NullPointerException {
+        if (c != null) {
+            if (usedConns.removeElement(c)) {
+                availableConns.addElement(c);
+            } else {
+                throw new NullPointerException("Connection not in the usedConns array");
+            }
+        }
+    }
+
+    public int getAvailableConnsCnt() {
+        return availableConns.size();
     }
 }
