@@ -1,11 +1,12 @@
 package epam.vakulchyk.bookinghotel.command.admin;
 
 import epam.vakulchyk.bookinghotel.command.ActionCommand;
-import epam.vakulchyk.bookinghotel.connection.Vsconnection;
+import epam.vakulchyk.bookinghotel.connection.ConnectionPool;
 import epam.vakulchyk.bookinghotel.database.DAORoom;
 import epam.vakulchyk.bookinghotel.logic.ResidentLogic;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DeleteResidentCommand implements ActionCommand {
@@ -15,13 +16,15 @@ public class DeleteResidentCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        Vsconnection connection = new Vsconnection();
+        ConnectionPool connectionPool = new ConnectionPool(1);
+        Connection connection =null;
         String page = null;
         boolean result;
         int id = 0;
         int number =0;
         try {
-            DAORoom daoRoom = new DAORoom(connection.takeConnection());
+            connection = connectionPool.retrieve();
+            DAORoom daoRoom = new DAORoom(connection);
 
         ResidentCommand residentCommand = new ResidentCommand();
         ResidentLogic residentLogic = new ResidentLogic();
@@ -30,10 +33,10 @@ public class DeleteResidentCommand implements ActionCommand {
         result = residentLogic.delResident(id);
         page = residentCommand.execute(request);
         daoRoom.changeEmployment(number,PARAM_FREE);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            connectionPool.putback(connection);
         }
         return page;
     }

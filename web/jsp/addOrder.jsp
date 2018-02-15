@@ -1,5 +1,5 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ taglib uri="/WEB-INF/taglib.tld" prefix="tag"%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -24,8 +24,8 @@
     </div>
 </nav>
 <div class="main">
-    <tag:greetings login="${idPerson}" />
-    <form name="registration" method="POST" action="controller">
+
+    <form name="rgistration" method="POST" action="controller">
         <input type="hidden" name="command" value="addorder"/>
         <p>
             <b>Тип апартаментов:</b><span class="reqiured">*</span>

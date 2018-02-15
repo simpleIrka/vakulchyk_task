@@ -5,8 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import java.util.Vector;
-
-public class Vsconnection {
+public class ConnectionPool {
     private Vector<Connection> availableConns = new Vector<Connection>();
     private Vector<Connection> usedConns = new Vector<Connection>();
     private static final String HOST_NAME = "localhost";
@@ -15,7 +14,7 @@ public class Vsconnection {
     private static final String PASSWORD = "pass";
     private static final String URL = "jdbc:mysql://" + HOST_NAME + ":3306/" + DB_NAME;
 
-    public Vsconnection(int initConnCnt) {
+    public ConnectionPool(int initConnCnt) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (Exception e) {

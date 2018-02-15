@@ -20,7 +20,7 @@
             <th><fmt:message key="room.number" /></th>
             <th><fmt:message key="room.numberSeats" /></th>
             <th><fmt:message key="room.typeApartment" /></th>
-            <th><fmt:message key="room.cost" /></th>admin.settle
+            <th><fmt:message key="room.cost" /></th>
             <th><fmt:message key="admin.settle" /></th>
         </tr>
         </thead>

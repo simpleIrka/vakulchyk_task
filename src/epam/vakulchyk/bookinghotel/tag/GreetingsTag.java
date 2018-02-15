@@ -12,7 +12,7 @@ public class GreetingsTag extends TagSupport {
 
     public int doStartTag() {
         try {
-            pageContext.getOut().write(login);
+            pageContext.getOut().write("Hello,"+login);
         } catch (IOException e) {
             e.printStackTrace();
         }

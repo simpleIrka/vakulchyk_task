@@ -2,26 +2,26 @@ package epam.vakulchyk.bookinghotel.command.admin;
 
 import epam.vakulchyk.bookinghotel.command.ActionCommand;
 import epam.vakulchyk.bookinghotel.command.ConfigurationManager;
-import epam.vakulchyk.bookinghotel.command.MessageManager;
-import epam.vakulchyk.bookinghotel.connection.Vsconnection;
+import epam.vakulchyk.bookinghotel.connection.ConnectionPool;
 import epam.vakulchyk.bookinghotel.database.DAOOrder;
 import epam.vakulchyk.bookinghotel.database.DAOResident;
 import epam.vakulchyk.bookinghotel.database.DAORoom;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class RegistrationOrderCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        Vsconnection connection = new Vsconnection();
-        Vsconnection connection2 = new Vsconnection();
-        Vsconnection connection3 = new Vsconnection();
+        ConnectionPool connectionPool = new ConnectionPool(3);
+        Connection connection = null;
         String page = null;
         try {
-           DAORoom daoRoom = new DAORoom(connection.takeConnection());
-            DAOOrder daoOrder = new DAOOrder(connection2.takeConnection());
-            DAOResident daoResident = new DAOResident(connection3.takeConnection());
+            connection = connectionPool.retrieve();
+           DAORoom daoRoom = new DAORoom(connection);
+            DAOOrder daoOrder = new DAOOrder(connection);
+            DAOResident daoResident = new DAOResident(connection);
            String roomNumber = request.getParameter("roomNum");
             String order = request.getParameter("id");
           int number = Integer.parseInt(roomNumber);
@@ -36,10 +36,10 @@ public class RegistrationOrderCommand implements ActionCommand {
            daoRoom.changeEmployment(number,"busy");
             page= ConfigurationManager.getProperty("path.page.menuAdmin");
 
-        } catch (ClassNotFoundException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }finally {
+            connectionPool.putback(connection);
         }
         return page;
     }

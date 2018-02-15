@@ -3,12 +3,13 @@ package epam.vakulchyk.bookinghotel.command.client;
 import epam.vakulchyk.bookinghotel.command.ActionCommand;
 import epam.vakulchyk.bookinghotel.command.ConfigurationManager;
 import epam.vakulchyk.bookinghotel.command.MessageManager;
-import epam.vakulchyk.bookinghotel.connection.Vsconnection;
+import epam.vakulchyk.bookinghotel.connection.ConnectionPool;
 import epam.vakulchyk.bookinghotel.database.DAOClient;
 import epam.vakulchyk.bookinghotel.database.DAOUser;
 import epam.vakulchyk.bookinghotel.entity.Client;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -25,12 +26,15 @@ public class RegistrationCommand implements ActionCommand {
         boolean resultUser;
         boolean resultClient;
         String page = null; // извлечение из запроса логина и пароля
-        Vsconnection connection = new Vsconnection();
+
+        ConnectionPool connectionPool = new ConnectionPool(2);
         DAOUser daoUser;
         DAOClient daoClient;
+        Connection connection = null;
         try {
-            daoUser = new DAOUser(connection.takeConnection());
-            daoClient = new DAOClient(connection.takeConnection());
+            connection = connectionPool.retrieve();
+            daoUser = new DAOUser(connection);
+            daoClient = new DAOClient(connection);
             String surname = request.getParameter(PARAM_NAME_SURNAME);
             String name = request.getParameter(PARAM_NAME_NAME);
             int phone = Integer.parseInt(request.getParameter(PARAM_NAME_PHONE));
@@ -49,28 +53,25 @@ public class RegistrationCommand implements ActionCommand {
 
             }
 
-        } catch (ClassNotFoundException e) {
+        }  catch (SQLException e) {
             e.printStackTrace();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }
+        finally {
+            connectionPool.putback(connection);
         }
 
         return page;
     }
-    private void takeData(HttpServletRequest request, String login,Vsconnection vsconnection) {
+    private void takeData(HttpServletRequest request, String login,ConnectionPool connectionPool) {
         DAOClient daoClient;
         ArrayList<Client> list = new ArrayList<>();
         try {
-            daoClient = new DAOClient(vsconnection.takeConnection());
+            daoClient = new DAOClient(connectionPool.retrieve());
             list = daoClient.dataClient(login);
             request.setAttribute("id",list.get(0).getIdClient());
             request.setAttribute("dataAboutClient", list);
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
-
     }
 }

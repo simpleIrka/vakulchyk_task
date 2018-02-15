@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="/WEB-INF/taglib.tld" prefix="tag"%>
 <fmt:setLocale value="${locale}" scope="session" />
 <fmt:setBundle basename="text"/>
 <html>
@@ -24,6 +25,7 @@
     </div>
 </nav>
 <div class="main">
+    <tag:greetings login="${loginAdmin}" />
     <table class="table">
         <thead>
         <tr>
