@@ -9,6 +9,8 @@ import epam.vakulchyk.bookinghotel.database.DAOUser;
 import epam.vakulchyk.bookinghotel.entity.Client;
 import epam.vakulchyk.bookinghotel.entity.Order;
 import epam.vakulchyk.bookinghotel.logic.OrderLogic;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sun.misc.ObjectInputFilter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,13 +27,16 @@ public class LoginCommand implements ActionCommand {
     private static final String PARAM_NAME_ERROR = "error";
     private static final String PARAM_DATA_ABOUT_CLIENT = "dataAboutClient";
     private static final String PARAM_ID_PERSON= "idPerson";
+    private static final String PARAM_ORDER_LIST= "orderLogic";
+    private static final String PARAM_LOGIN_ADMIN= "loginAdmin";
+    private static final Logger LOGGER = LogManager.getLogger(LoginCommand.class);
 
     @Override
     public String execute(HttpServletRequest request) {
-        String page = null; // извлечение из запроса логина и пароля
+        String page = null;
 
         ConnectionPool connectionPool = new ConnectionPool(1);
-        Connection connection = null;
+        Connection connection= null;
         DAOUser daoUser = null;
         try {
             connection = connectionPool.retrieve();
@@ -45,24 +50,28 @@ public class LoginCommand implements ActionCommand {
                     page = ConfigurationManager.getProperty("path.page.menuAdmin");
                     OrderLogic orderLogic = new OrderLogic();
                     ArrayList<Order> list = orderLogic.makeOrderList();
-                    request.setAttribute("orderLogic",list);
+
                     HttpSession session= request.getSession();
-                    session.setAttribute("loginAdmin",login);
+                    session.setAttribute(PARAM_LOGIN_ADMIN,login);
+                    session.setAttribute(PARAM_ORDER_LIST,list);
+                    LOGGER.info("User enter as a admin");
                     break;
                 }
                 case PARAM_NAME_CLIENT: {
                     takeData(request, login);
                     page = ConfigurationManager.getProperty("path.page.menuClient");
+                    LOGGER.info("User enter as a client");
                     break;
                 }
                 case PARAM_NAME_ERROR: {
                     request.setAttribute("errorLoginPassMessage", MessageManager.getProperty("message.loginerror"));
                     page = ConfigurationManager.getProperty("path.page.login");
+                    LOGGER.info("Some problem with enter");
                     break;
                 }
             }
         }  catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Something wrong with sql query");
         }finally {
             connectionPool.putback(connection);
         }
@@ -71,7 +80,7 @@ public class LoginCommand implements ActionCommand {
 
     private void takeData(HttpServletRequest request, String login) {
         Client client = null;
-        ArrayList<Client> list = new ArrayList<>();
+        ArrayList<Client> list = new ArrayList<Client>();
         DAOClient daoClient;
         ConnectionPool connectionPool = new ConnectionPool(1);
         Connection connection = null;
@@ -82,9 +91,10 @@ public class LoginCommand implements ActionCommand {
             request.setAttribute(PARAM_DATA_ABOUT_CLIENT, list);
             HttpSession session= request.getSession();
             session.setAttribute(PARAM_ID_PERSON,list.get(0).getIdClient());
+            LOGGER.info("Problem with take data about client");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("Something wrong with sql query");
         } finally {
             connectionPool.putback(connection);
         }

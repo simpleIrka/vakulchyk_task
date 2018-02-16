@@ -12,6 +12,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class RegistrationOrderCommand implements ActionCommand {
+    /**
+     * This method take from jsp file id order and room number that choose admin
+     * for client,than causes dao method, that
+     * give the customer
+     * @return page for further work
+     */
     @Override
     public String execute(HttpServletRequest request) {
         ConnectionPool connectionPool = new ConnectionPool(3);
@@ -34,7 +40,8 @@ public class RegistrationOrderCommand implements ActionCommand {
             int costLeaving = cost*time;
             registrationOrder = daoResident.create(costLeaving,idOrder,number);
            daoRoom.changeEmployment(number,"busy");
-            page= ConfigurationManager.getProperty("path.page.menuAdmin");
+           ResidentCommand residentCommand = new ResidentCommand();
+           page = residentCommand.execute(request);
 
         }catch (SQLException e) {
             e.printStackTrace();

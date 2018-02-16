@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 
 public class OpenCommand implements ActionCommand{
     private static final String PARAM_PAGE = "page";
-
+    /**
+     * This  method for open page, that user want
+     *
+     * @return page for further work
+     */
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
